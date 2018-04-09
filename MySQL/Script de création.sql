@@ -11,6 +11,8 @@ CREATE TABLE Table_Vente(
         id_vente        Int NOT NULL ,
         date_de_vente   Char (20) NOT NULL ,
         quantite_vendue Int ,
+		province_de_vente Char (11) NOT NULL ,
+        ville_de_vente    Char (11) NOT NULL ,
         id_objet        Int NOT NULL ,
         PRIMARY KEY (id_vente )
 )ENGINE=InnoDB;
@@ -170,6 +172,8 @@ CREATE TABLE Table_Est_dote(
 )ENGINE=InnoDB;
 
 ALTER TABLE Table_Vente ADD CONSTRAINT FK_Vente_id_objet FOREIGN KEY (id_objet) REFERENCES Table_Objet(id_objet);
+ALTER TABLE Table_Vente ADD CONSTRAINT FK_Vente_province_de_vente FOREIGN KEY (province_de_vente) REFERENCES Table_Objet(province_de_vente);
+ALTER TABLE Table_Vente ADD CONSTRAINT FK_Vente_ville_de_vente FOREIGN KEY (ville_de_vente) REFERENCES Table_Objet(ville_de_vente);
 ALTER TABLE Table_Objet ADD CONSTRAINT FK_Objet_id_vente FOREIGN KEY (id_vente) REFERENCES Table_Vente(id_vente);
 ALTER TABLE Table_Utilise ADD CONSTRAINT FK_Utilise_decorations_objet FOREIGN KEY (decorations_objet) REFERENCES Table_Decoration(decorations_objet);
 ALTER TABLE Table_Utilise ADD CONSTRAINT FK_Utilise_mois_consacre FOREIGN KEY (mois_consacre) REFERENCES Table_Veneration(mois_consacre);
