@@ -1,0 +1,6 @@
+SELECT DISTINCT
+CASE
+	WHEN INSTR(temporaire_ventes.Décorations, ' & ') > 0 THEN SUBSTRING_INDEX(SUBSTRING_INDEX(temporaire_ventes.Décorations, ' & ', seq_0_to_2.seq), ' & ', -1)
+    ELSE SUBSTRING_INDEX(temporaire_ventes.Décorations, ' & ', 1)
+END
+FROM seq_0_to_2 INNER JOIN temporaire_ventes ON CHAR_LENGTH(temporaire_ventes.Décorations) - CHAR_LENGTH(REPLACE(temporaire_ventes.Décorations, ' & ', '')) >= seq_0_to_2.seq;
